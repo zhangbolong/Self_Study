@@ -101,4 +101,54 @@ public class FixedCapacityArrayStackOfString{
     Loitering: the string is still in the array after called pop()
 */
 
-/* */
+/** Resizing Arrays
+    How to grow and shrink array?
+        Ensure array resizing happens infrequently.
+    How to grow array?
+        If an array is full, create an array twice the size, and copy items. 
+    How to shrink the array?
+         Halve the size of array s[] when array is quater-full
+*/
+
+/** Resizing  array to the double size if full
+    implementation:
+*/
+
+public class ResizingArrayStackOfString extends FixedCapacityArrayStackOfString {
+    private String[] s;
+    private int N = 0;
+    
+    public ResizingArrayStackOfStrings(){
+        s = new String[1];
+    }
+
+    /* Create a new array, copy and replace the array pointer*/
+    private void resize(int capacity){
+        String[] copy = new String[CAPACITY];
+        for(int i = 0; i< N; i++){
+            copy[i] = s[i];    
+        }
+        s = copy;
+    }
+
+    /* Push String inside , if array is full, double the array size */
+    public void push(String item){
+        if(N == s.length) {
+            resize(2 * s.length);
+        }
+        s[N++] = item;
+    }
+
+    /* Pop out string, resize array to half size if valid item less than 1/4 */
+    public String pop(){
+        Sting item = s[--N];
+        s[N] = null;
+        if(N>0 && N == s.length/4){
+            resize(s.length/2);
+        }
+        return item;
+    }
+}
+
+/**/
+
