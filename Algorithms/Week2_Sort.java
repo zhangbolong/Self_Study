@@ -99,7 +99,7 @@ private static boolean isSorted(Comparable[] a){
                     No entry in remain[] are smaller than those in sorted[].
 
     Running time: Quadratic even if is sorted. Linear time of use exch().
- */
+*/
  public class Selection{
      public static void sort(Comparable[] a){
          int N = a.length;
@@ -120,7 +120,7 @@ private static boolean isSorted(Comparable[] a){
 
  // Insertion sort
 
- /**
+ /** Insertion sort
     Idea: pick one from unsorted group each, swap with left one if its smaller
             than the left one, continue doing this until it's greater than the 
             left one. Then pick anothe from unsorted until all are sorted.
@@ -154,6 +154,87 @@ public class Insertion{
 }
 
 //Shell sort
+
+/** Shell Sort
+    $ h-array: Array that partite into h sub-arrays
+
+    $ If a array has length of 10, we can do 7-sort, 3-sort and 1-sort to 
+        complete a shell sort.And a 3-sorted array is still a 7-sorted array!
+
+    $ What increment sequence should we use  in shell sort?
+        Acceptable solution: 3X+1: 1, 4, 13, 40....
+        Good solution:1, 5, 19, 41, 109, 209, 505, 929, 2161, 3905.(Sedgewick)
+
+    $ Shell sort is rather fast, easy to write, and is hardware sort prototype.
+    $ Simple algorithm, average performance.
+
+*/
+public class Shell{
+    public class void sort(Comparable a[]){
+        int N = a.length;
+
+        /* Create 3X+1 increment sequence */
+        int h = 1;
+        while(h < N/3){
+            h = 3*h + 1;
+        }
+        /* Start h-sort */
+        while(h > -1){
+            /* Start Insertion Sort */
+            for(int i = h; i < N; i++){
+                for(int j = i; j >= h && less(a[j], a[j-h]); j -=h){
+                    exch(a, j, j-h);
+                }
+            }
+            /* Start next h-sort */
+            h = h/3;
+        }
+
+    }
+    /* Helper functions same as above */
+     private static boolean less(Comparable v, Comparable w){}
+     private static void exch(Comparable a[], int i, in j){}
+}
+
+// Shuffle: Unsorted the sorted
+
+/** Knuth Shuffling "washing cards" 洗牌
+    $ How to make a poker in random sequence?
+            Generate a random index number for each card. And then sort 
+            the card by its index.
+    $ Drawback: requires cost of sorting time.
+    $ Knuth Shuffling Algorithm: similar to insertion sort, Linear time complexity
+            Difference from insertion: pick random one in the sorted array 
+            and swap instead of compare one by one.
+*/ 
+import java.util.Random;
+public class shuffleRandom{
+    public static void shuffle(object[] a){
+        int N = a.length;
+        for(int i = 0; i < N; i++){
+            /* Generate random integer between 0 and i */
+            int r = Random.nextInt(i + 1);
+            exch(a, i, r);
+        }
+    }
+    /* Helper functions same as above */
+     private static void exch(Comparable a[], int i, in j){}
+}
+
+// Bug in the online poker game
+/** Shuffling algorthim which pick every card and swap with random card 
+    $BUG 1 : never reach No.52 card, didn't shuffle the 52nd card.
+    $BUG 2 : random() use 32-bit seeds, only 2^32 possibilities, but
+                there could be more shuffle results.
+*/
+for(int i = 1; i < 52; i++){
+    r = random(51) + 1;
+    swap = card[r];
+    card[r] = card[i];
+    card[i] = swap;  
+}
+
+
 
 
 
