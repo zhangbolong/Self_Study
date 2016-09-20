@@ -234,8 +234,45 @@ for(int i = 1; i < 52; i++){
     card[i] = swap;  
 }
 
-/**/
+// Convex hull 
+/** convex hull of a set of N points is the smaillest perimeter fence enclosing
+        the points.
 
+    $ Smallest area to cover all vertex.
+    $ Convex hull output: Sequence of vertices in counterclock wise
+
+    $ Can traverse hte convex hull by making only counterclockwise turns
+    $ Graham Scan :
+            Choose point p with smallest y-coordinate (lowest).
+            Sort points by polar angle with p(label 1, 2, 3 counterclockwise).
+            Consider points in order; discard unless it create a 
+            counterclockwise turn.
+    $  CounterClockWise 
+            $ Math : cross product coordinates of a, b, c. If > 0, the CCW
+
+*/
+/* Test if is CounterClockWise */
+public class Point2D{
+    private final double x;
+    private final double y;
+
+    public Point2D(double x, double y){
+        this.x = x;
+        this.y = y;
+    }
+
+    public static int ccw(Point2D a, Point2D b, Point2D c){
+        double area2 - (b.x -a.x)*(c.y-a.y) - (b.y - a.y)*(c.x - a.x);
+        if(area2 < 0){
+            return -1;  //clockwise
+        }else if(area2 > 0){
+            return 1;   //counterclockwise
+        }else{ 
+            return 0;   //co-linear
+        }
+
+   }
+}
 
 
 
