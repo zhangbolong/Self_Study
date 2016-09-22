@@ -18,9 +18,10 @@ private static void merge(Comparable[] a, comparable[] aux,
 
         int i = lo, j = mid + 1;
         for(int k=lo; k <= hi;k++){
+            // If left array is exhausted, pass he right to a[]
             if(i > mid){
-                a[k] = aux[j++];
-            }else if(j < hi){
+                a[k] = aux[j++]; 
+            }else if(j < hi){ // If right exhausted, pass let to a[]
                 a[k] = aux[i++];
             }else if(less(aux[j], aux[i])){
                 a[k] = aux[j++];
@@ -150,3 +151,4 @@ public class InsertWithComparator{
     $ Insertion and Mergesort are stable.
     $ Selection, Shellsort and Quicksort are not stable.
 */
+
