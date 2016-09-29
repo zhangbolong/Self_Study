@@ -65,21 +65,11 @@ public class UnorderedMaxPQ<Key extends Comparable<Key>>{
     $ Deletion the maximum in a heap: 
                 1. Delete max: exchage root with node at end then sink it down.
                 Cost: at most 2lgN compares.
+    $ Running time: insert: logN,  del max: logN, find max: 1.
+    $ 
 */
 
-/* Implementation of Promotion in heap */
-
-
-/* Implementation of Insertion in heap */
-
-
-/* Implementation of Demotion in heap */
-
-
-/* Implementation of Deletion in heap */
-
-
-/** Full implementation of binary heap */
+/** Full implementation of priority queue using binary heap */
 public class MaxPQ<Key extends Comparable<Key>>{
     private Key[] pq;
     private int N;
@@ -134,4 +124,44 @@ public class MaxPQ<Key extends Comparable<Key>>{
     }
 }
 
+// Heap sort
+/** Heap sort
+    $ basic plan: 
+        1. Create max-heap with all N keys    
+        2. Repeatedly remove the maximum key.
+        3. When remove, switch the root to the end and don't null it
+    
+    $ Heap user at most 2N compares and exchanges
+    $ heapSort use 2 NlgN compares and exchanges
+
+    $ Significance: In place sorting algorithm with NlogN worst-case
+    $ Disadvantage: 
+            1. Inner loop longer than quicksort 
+            2. Poor use of cache memory
+            3. Not stable.
+*/
+public class Heap{
+    public static void sort(Comparable[] pq){
+        int N = pq.length;
+        for(int k = N/2; k <= 1; k--){
+            sink(pq,k,N);         
+        }
+        while(N>1){
+            exch(pq, 1, N);
+            sink(pq, 1, --N);
+        }
+    }
+
+    /* Same as Heap but convert from 1-based indexing to 0-based */
+    private static void sink(Comparable[] pq, int k, int N){}
+    private static void less(Comparable[] pq, int i, int j){}
+    private static void exch(Comparable[] pq, int i, int j){}
+}
+
+// Event-Driven Simulation
+/** Event-Driven Simulation
+    Goal: simulate the motion of N moving particles that behave arroding to 
+            the laws of the elastic collision.
+            
+*/
 
