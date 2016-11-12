@@ -64,3 +64,27 @@ public final class string{
     # If field is a reference type, use hashCode().
     # If field is an array, apply to each entry.
 */
+
+/** Algorithm complexity attack on java
+    # To find the hash code function and use a string of data which have 
+        the same hashcode to attack the client and cause hault.
+    # Solution : One-way hash functions -- "Hard" to find a key that will apply
+            to different values.
+            Exmaple: MD5, SHA-1, SHA-2(but still not secure)
+
+*/
+
+/** Seperate chaining  VS  Linear probing
+    # Seperate Chaining:
+            Easier to implement and delete
+            performance degrades gracefully
+            less like to clustered
+    # Linear probing:
+            Less wasted space
+            better cache performance
+*/
+
+/** Hashtables VS balanced search trees
+    Hash: simple & fast
+    BST: stronger performance
+*/
